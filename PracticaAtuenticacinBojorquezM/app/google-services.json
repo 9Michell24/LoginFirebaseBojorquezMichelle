@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "105145477719",
+    "project_id": "ejemplologin-6e45b",
+    "storage_bucket": "ejemplologin-6e45b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105145477719:android:80b74f2bc124bd11501112",
+        "android_client_info": {
+          "package_name": "mx.edu.potros.ejemploauthfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgegDIVSDFvv-NXZKsEfplyI0JQE5Rruk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
