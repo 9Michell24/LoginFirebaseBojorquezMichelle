@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val email = intent.extras!!.getString("user")
 
         val user: TextView=findViewById(R.id.tvUser)
-        val  button: Button=findViewById(R.id.btnLogout)
+        val  button: Button=findViewById(R.id.btnLogout) 
 
         user.text = email
 
