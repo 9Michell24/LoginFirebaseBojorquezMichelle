@@ -11,7 +11,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
-import mx.edu.potros.ejemploauthfirebase.R
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,12 +22,13 @@ class LoginActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        val email: EditText =findViewById(R.id.etEmail)
-        val password: EditText =findViewById(R.id.etPassword)
-        val errorTv: TextView =findViewById(R.id.tvError)
-        val button: Button =findViewById(R.id.btnLogin)
+        val email: EditText = findViewById(R.id.etEmail)
+        val password: EditText = findViewById(R.id.etPassword)
+        val errorTv: TextView = findViewById(R.id.tvError)
+        val button: Button = findViewById(R.id.btnLogin)
+        val goRegister: Button = findViewById(R.id.btnGoRegister)
 
-        errorTv.visibility= View.INVISIBLE
+        errorTv.visibility = View.INVISIBLE
 
         button.setOnClickListener {
             val userEmail = email.text.toString().trim()
@@ -40,42 +40,43 @@ class LoginActivity : AppCompatActivity() {
                 login(userEmail, userPassword)
             }
         }
+
+        goRegister.setOnClickListener {
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    fun goToMain(user: FirebaseUser){
-        val intent= Intent(this, MainActivity::class.java)
+    fun goToMain(user: FirebaseUser) {
+        val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("user", user.email)
         startActivity(intent)
     }
 
-    fun showError(text:String="", visible: Boolean){
-        val errorTv: TextView=findViewById(R.id.tvError)
-        errorTv.text=text
-        errorTv.visibility=if(visible) View.VISIBLE else View.INVISIBLE
-
+    fun showError(text: String = "", visible: Boolean) {
+        val errorTv: TextView = findViewById(R.id.tvError)
+        errorTv.text = text
+        errorTv.visibility = if (visible) View.VISIBLE else View.INVISIBLE
     }
 
     public override fun onStart() {
         super.onStart()
-        val currentUser=auth.currentUser
-        if(currentUser!=null){
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
             goToMain(currentUser)
         }
     }
 
-    fun login(email: String, password: String){
+    fun login(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this){ task ->
-                if (task.isSuccessful){
-                    val user=auth.currentUser
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
                     showError(visible = false)
                     goToMain(user!!)
-                }else{
+                } else {
                     showError("Usuario y/o contraseña equivocados", true)
                 }
-
             }
     }
-
-
 }
